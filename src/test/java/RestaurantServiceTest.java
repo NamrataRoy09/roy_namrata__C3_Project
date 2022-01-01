@@ -58,6 +58,42 @@ class RestaurantServiceTest {
     }
     //<<<<<<<<<<<<<<<<<<<<ADMIN: ADDING & REMOVING RESTAURANTS>>>>>>>>>>>>>>>>>>>>>>>>>>
 
+    //>>>>>>>>>>>>>>>>>>>>>>>>>>Calculate Bill<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+    @Test
+    public void find_order_value_should_return_zero_if_no_item_is_added()
+    {
+        createRestaurant();
+        List<String> items=new ArrayList<String>();
+        double amount=service.findOrderValue(items,restaurant);
+        assertEquals(0.0,amount);
+    }
+
+    @Test
+    public void find_order_value_should_return_the_total_order_value_when_not_all_the_items_from_the_menu_are_added()
+    {
+        createRestaurant();
+        List<String> items=new ArrayList<String>();
+        items.add("Sweet corn soup");
+        items.add("Vegetable lasagne");
+        double amount=service.findOrderValue(items,restaurant);
+        assertEquals(388.0,amount);
+    }
+
+    @Test
+    public void find_order_value_should_return_the_total_order_value_when_all_the_items_from_the_menu_are_added()
+    {
+        createRestaurant();
+        List<String> items=new ArrayList<String>();
+        items.add("Sweet corn soup");
+        items.add("Vegetable lasagne");
+        items.add("Sizzling brownie");
+        double amount=service.findOrderValue(items,restaurant);
+        assertEquals(707.0,amount);
+    }
+
+    //<<<<<<<<<<<<<<<<<<<<<<<Calculate Bill>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 
     public void createRestaurant()
     {
