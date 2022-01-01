@@ -72,4 +72,12 @@ public class Restaurant {
     public String getName() {
         return name;
     }
+
+    public double findItemPrice(String itemName)
+    {
+        double amount;
+        Item itemToFindPriceOf=findItemByName(itemName);
+        amount= Double.parseDouble((itemToFindPriceOf.toString().split(":"))[1]);
+        return amount;
+    }
 }

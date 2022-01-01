@@ -35,5 +35,12 @@ public class RestaurantService {
         return restaurants;
     }
 
+    public double findOrderValue(List<String> items, Restaurant restaurant)
+    {
+        double amount=0;
+        for(String item:items)
+            amount += restaurant.findItemPrice(item);
+        return amount;
+    }
 
 }
